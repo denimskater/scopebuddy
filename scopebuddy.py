@@ -2,7 +2,18 @@
 
 # NOTE: this example requires PyAudio because it uses the Microphone class
 
+
 import speech_recognition as sr
+
+#Scope Identification
+scopeIdRead = 'Tektronix'
+scopeMfg = ''
+if 'LeCroy' in scopeIdRead:
+    scopeMfg = 'LeCroy'
+elif 'Tektronix' in scopeIdRead:
+    scopeMfg = 'Tektronix'
+
+print(scopeMfg)
 
 # obtain audio from the microphone
 r = sr.Recognizer()
