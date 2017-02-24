@@ -7,6 +7,7 @@ import speech_recognition as sr
 # obtain audio from the microphone
 r = sr.Recognizer()
 with sr.Microphone(device_index = 2, sample_rate=48000, chunk_size = 512) as source:
+    r.adjust_for_ambient_noise(source) # listen for 1 second to calibrate the energy threshold for ambient noise levels
     print("Say something!")
     audio = r.listen(source)
 
