@@ -1,0 +1,28 @@
+- Install dhcp-server or isc-dchp-server if not already installed
+
+- 4 Files Need to be Editted:
+/////////////////1/////////////////
+Edit /etc/dhcp/dhcpd.conf
+--> Uncomment "authoritative;"
+--> Add:	Subnet [assigned eth0 ipAddr] netmask 255.255.255.0
+				range ...
+				broadcast-adress ...
+				routers [assigned eth0 ipAddr]
+				lease-time ...
+				domain-name
+			
+/////////////////2//////////////////
+Edit /etc/network/interfaces
+--> Add:	auto eth0
+			iface eth0 inet static
+				address [assigned idAddr]
+				netmask 255.255.255.0
+
+/////////////////3/////////////////
+Edit /etc/default/isc-dhcp-server
+--> INTERFACES = "eth0"
+
+/////////////////4/////////////////
+Edit /etc/rc.local
+--> sudo ifconfig eth0 [assigned ipAddr] netmask 255.255.255.0
+[can add dhcp restart here]
